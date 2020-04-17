@@ -1,0 +1,20 @@
+int LED = D6;
+int LightSensor = A0;
+int analog = 0;
+void setup()
+{
+    pinMode(LED,OUTPUT);
+    pinMode(LightSensor, INPUT);
+}
+
+void loop()
+{
+    analog = analogRead(LightSensor);
+    digitalWrite(LED,High);
+    
+    String light_intensity = String(analog);
+    Particle.publish("light_intensity", light_intensity,PRIVATE);
+    delay(20000);
+    digitalWrite(LED,LOW);
+    delay(5000);
+}
